@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         numberOfClicks += 1
         updateLabelCounter(value: numberOfClicks)
         
-        clickHistory.text += "\n\(currentDate()) +1"
+        clickHistory.text += "\n\(currentDate()) Значение изменено на +1"
     }
     
     // Кнопка плюс
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         
         numberOfClicks -= 1
         updateLabelCounter(value: numberOfClicks)
-        clickHistory.text += "\n\(currentDate()) -1"
+        clickHistory.text += "\n\(currentDate()) Значение изменено на-1"
     }
     
     // Обнуление счетчика
