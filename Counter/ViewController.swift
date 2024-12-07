@@ -8,8 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var clickCounter: UILabel!
-    @IBOutlet weak var clickHistory: UITextView!
+    @IBOutlet weak private var clickCounter: UILabel!
+    @IBOutlet weak private var clickHistory: UITextView!
     
     // Количество нажатий
     private var numberOfClicks = 0
@@ -19,9 +19,11 @@ class ViewController: UIViewController {
         clickCounter.text = "Значение счетчика: \(value)"
     }
     
+    // Форматер тут создается один раз, а не при каждом вызове функции currentDate()
+    private let dateFormatter = DateFormatter()
+    
     // Текущая дата
     private func currentDate() -> String {
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy HH:mm:ss"
         dateFormatter.timeZone = TimeZone.current
         
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
     
 
     // Большая кнопка +1
-    @IBAction func counterButton() {
+    @IBAction private func counterButton() {
         numberOfClicks += 1
         updateLabelCounter(value: numberOfClicks)
         
@@ -39,13 +41,13 @@ class ViewController: UIViewController {
     }
     
     // Кнопка плюс
-    @IBAction func addOneToCounter() {
+    @IBAction private func addOneToCounter() {
         // Уже есть, ее и повторю
         counterButton()
     }
     
     // Кнопка минус
-    @IBAction func subtractOneToCounter() {
+    @IBAction private func subtractOneToCounter() {
         // Завершить если меньше или ноль, чтобы не уходить в минус
         if numberOfClicks <= 0 {
             clickHistory.text += "\n\(currentDate()) Попытка уменьшить значение счётчика ниже 0"
@@ -58,7 +60,7 @@ class ViewController: UIViewController {
     }
     
     // Обнуление счетчика
-    @IBAction func resetCounter() {
+    @IBAction private func resetCounter() {
         numberOfClicks = 0
         updateLabelCounter(value: 0)
         
